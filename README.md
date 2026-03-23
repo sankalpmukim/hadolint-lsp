@@ -193,6 +193,38 @@ npm test
 node src/index.js --stdio
 ```
 
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment.
+
+- **Tests run automatically** on every push and pull request
+- **Auto-publish to npm** when creating a GitHub release
+- **Status badges** will appear at the top of this README
+
+For detailed setup instructions, see [CI_CD.md](./CI_CD.md).
+
+### Adding NPM Token
+
+To enable auto-publishing, add `NPM_TOKEN` secret to GitHub:
+
+1. Create a Granular Access Token at https://www.npmjs.com/settings/tokens
+   - Organization: `@sankalpmukim`
+   - Access level: Publish
+   - Enable 2FA bypass
+2. Go to https://github.com/sankalpmukim/hadolint-lsp/settings/secrets/actions/new
+3. Name: `NPM_TOKEN`, paste token
+4. Create release to publish: `git tag v0.1.1 && git push origin v0.1.1`
+
+### Creating Releases
+
+```bash
+# Bump version
+npm version patch
+
+# Create and push tag (triggers publish)
+git push origin v$(node -p "require('./package.json').version")
+```
+
 ## License
 
 GPL-3.0
