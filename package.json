@@ -9,7 +9,10 @@
   "files": [
     "src"
   ],
-  "scripts": {},
+  "scripts": {
+    "test": "node test/run-tests.js",
+    "test:coverage": "node test/run-tests.js --coverage"
+  },
   "keywords": [
     "lsp",
     "language-server",

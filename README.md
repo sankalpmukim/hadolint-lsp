@@ -14,6 +14,63 @@ Or install globally:
 npm install -g hadolint-lsp
 ```
 
+## OpenCode Integration
+
+To use hadolint-lsp with OpenCode, add it to your `opencode.json` configuration file:
+
+### Local Configuration
+
+Add to your project-local `opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "hadolint": {
+      "command": ["npx", "-y", "hadolint-lsp", "--stdio"],
+      "extensions": ["Dockerfile", "dockerfile"]
+    }
+  }
+}
+```
+
+### Global Configuration
+
+Add to your global OpenCode config (usually at `~/.config/opencode/opencode.json`):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "hadolint": {
+      "command": ["npx", "-y", "hadolint-lsp", "--stdio"],
+      "extensions": ["Dockerfile", "dockerfile"]
+    }
+  }
+}
+```
+
+If you have installed hadolint-lsp globally, you can use:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "hadolint": {
+      "command": ["hadolint-lsp", "--stdio"],
+      "extensions": ["Dockerfile", "dockerfile"]
+    }
+  }
+}
+```
+
+### Notes
+
+- The LSP server communicates via stdio, so the `--stdio` flag is important
+- The `extensions` array specifies which file extensions the LSP should handle
+- OpenCode will automatically start the LSP server when you open a Dockerfile
+- Make sure `hadolint` is available in your PATH (see Requirements section)
+
 ## Requirements
 
 This LSP server requires [hadolint](https://github.com/hadolint/hadolint) to be installed and available in your PATH.
@@ -106,17 +163,34 @@ override:
     - DL3015
 ```
 
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+The test suite covers:
+- Hadolint integration
+- Severity mapping
+- Diagnostic generation
+- Package structure validation
+- Executable verification
+
+All tests should pass (17 total tests as of v0.1.0).
+
 ## Development
 
 ```bash
 # Install dependencies
 npm install
 
-# Build
-npm run build
+# Run tests
+npm test
 
 # Run in development mode
-npm run build && node dist/index.js --stdio
+node src/index.js --stdio
 ```
 
 ## License
