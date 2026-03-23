@@ -1,5 +1,5 @@
 {
-  "name": "hadolint-lsp",
+  "name": "@sankalpmukim/hadolint-lsp",
   "version": "0.1.0",
   "description": "Language Server Protocol implementation for Hadolint",
   "main": "src/index.js",

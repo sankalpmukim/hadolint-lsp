@@ -5,13 +5,13 @@ A Language Server Protocol implementation for Hadolint, the Dockerfile linter.
 ## Installation
 
 ```bash
-npx hadolint-lsp
+npx @sankalpmukim/hadolint-lsp
 ```
 
 Or install globally:
 
 ```bash
-npm install -g hadolint-lsp
+npm install -g @sankalpmukim/hadolint-lsp
 ```
 
 ## OpenCode Integration
@@ -27,7 +27,7 @@ Add to your project-local `opencode.json`:
   "$schema": "https://opencode.ai/config.json",
   "lsp": {
     "hadolint": {
-      "command": ["npx", "-y", "hadolint-lsp", "--stdio"],
+      "command": ["npx", "-y", "@sankalpmukim/hadolint-lsp", "--stdio"],
       "extensions": ["Dockerfile", "dockerfile"]
     }
   }
@@ -43,14 +43,14 @@ Add to your global OpenCode config (usually at `~/.config/opencode/opencode.json
   "$schema": "https://opencode.ai/config.json",
   "lsp": {
     "hadolint": {
-      "command": ["npx", "-y", "hadolint-lsp", "--stdio"],
+      "command": ["npx", "-y", "@sankalpmukim/hadolint-lsp", "--stdio"],
       "extensions": ["Dockerfile", "dockerfile"]
     }
   }
 }
 ```
 
-If you have installed hadolint-lsp globally, you can use:
+If you have installed @sankalpmukim/hadolint-lsp globally, you can use:
 
 ```json
 {
@@ -101,7 +101,7 @@ Create or edit `.vscode/settings.json`:
 {
   "dockerfile.languageserver": {
     "dockerfile-language-server-node": {
-      "command": "hadolint-lsp"
+      "command": "@sankalpmukim/hadolint-lsp"
     }
   }
 }
@@ -115,7 +115,7 @@ With [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig):
 
 ```lua
 require'lspconfig'.hadolint_lsp.setup{
-  cmd = { "hadolint-lsp" },
+  cmd = { "@sankalpmukim/hadolint-lsp" },
   filetypes = { "dockerfile" },
   root_dir = require('lspconfig').util.root_pattern(".hadolint.yaml"),
 }
@@ -129,7 +129,7 @@ With [lsp-mode](https://github.com/emacs-lsp/lsp-mode):
 (use-package lsp-mode
   :config
   (lsp-register-client
-    (make-lsp-client :new-connection (lsp-stdio-connection "hadolint-lsp")
+    (make-lsp-client :new-connection (lsp-stdio-connection "@sankalpmukim/hadolint-lsp")
                      :major-modes '(dockerfile-mode)
                      :server-id 'hadolint-lsp)))
 ```

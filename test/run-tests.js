@@ -160,7 +160,7 @@ function testPackageStructure() {
   assert(existsSync('README.md'), 'README.md exists');
 
   const pkg = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-  assert(pkg.name === 'hadolint-lsp', 'Package name is correct');
+  assert(pkg.name === '@sankalpmukim/hadolint-lsp', 'Package name is correct');
   assert(pkg.bin['hadolint-lsp'] === 'src/index.js', 'Binary path is correct');
   assert(pkg.keywords.includes('lsp'), 'Package includes lsp keyword');
   assert(pkg.keywords.includes('hadolint'), 'Package includes hadolint keyword');
